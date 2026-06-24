@@ -1,0 +1,26 @@
+apply from: 'config.gradle'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.1'
+        classpath 'com.yanzhenjie.andserver:plugin:2.1.12'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

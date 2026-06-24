@@ -1,0 +1,38 @@
+apply plugin: plugin.androidLibrary
+
+android {
+    namespace 'com.yanzhenjie.andserver'
+    compileSdkVersion androidBuild.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidBuild.libraryMinSdkVersion
+        targetSdkVersion androidBuild.libraryTargetSdkVersion
+        consumerProguardFiles 'proguard-rules.txt'
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "java.lang.String", "PROJECT_VERSION", "\"${POM_VERSION}\""
+        }
+        debug {
+            buildConfigField "java.lang.String", "PROJECT_VERSION", "\"${POM_VERSION}\""
+        }
+    }
+}
+
+dependencies {
+    api project(':annotation')
+
+    implementation deps.apache.httpcore
+    implementation deps.apache.fileupload
+    compileOnly deps.android.annotation
+}
